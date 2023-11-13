@@ -18,11 +18,11 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 with tab0:
     # tratando os dados
-    df_producao['Total'] = df_producao.sum(axis=1)
-    df_producao = df_producao.sort_values(by='Total', ascending=False)
     df_producao.reset_index(inplace=True)
     df_producao = df_producao.drop('index', axis=1)
     df_producao_usaveis = df_producao.set_index('País')
+    df_producao_usaveis['Total'] = df_producao_usaveis.sum(axis=1)
+    df_producao_usaveis = df_producao_usaveis.sort_values(by='Total', ascending=False)
 
     df_producao_outros = df_producao_usaveis.query('Total < 500000')
     total_outros = df_producao_outros.sum()
